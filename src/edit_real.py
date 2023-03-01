@@ -66,6 +66,7 @@ if __name__=="__main__":
                 negative_prompt=prompt_str # use the unedited prompt for the negative prompt
         )
         
-        bname = os.path.basename(args.inversion).split(".")[0]
+        # bname = os.path.basename(args.inversion).split(".")[0]
+        bname = inv_path.split('/')[-1].split('.')[0]
         edit_pil[0].save(os.path.join(args.results_folder, f"edit/{bname}.png"))
         rec_pil[0].save(os.path.join(args.results_folder, f"reconstruction/{bname}.png"))
