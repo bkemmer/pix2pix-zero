@@ -19,9 +19,9 @@ torch.Tensor: A tensor representing the direction in the embedding space that tr
 Examples:
 >>> construct_direction("cat2dog")
 """
-def construct_direction(task_name):
+def construct_direction(task_name, emb_dir):
     (src, dst) = task_name.split("2")
-    emb_dir = f"assets/embeddings_sd_1.4"
+    # emb_dir = f"assets/embeddings_sd_1.4/age_related/"
     embs_a = torch.load(os.path.join(emb_dir, f"{src}.pt"), map_location=device)
     embs_b = torch.load(os.path.join(emb_dir, f"{dst}.pt"), map_location=device)
     return (embs_b.mean(0)-embs_a.mean(0)).unsqueeze(0)

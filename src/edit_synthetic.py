@@ -51,7 +51,7 @@ if __name__=="__main__":
     rec_pil, edit_pil = pipe(args.prompt_str, 
         num_inference_steps=args.num_ddim_steps,
         x_in=x,
-        edit_dir=construct_direction(args.task_name),
+        edit_dir=construct_direction(args.task_name, args.emb_dir),
         guidance_amount=args.xa_guidance,
         guidance_scale=args.negative_guidance_scale,
         negative_prompt="" # use the empty string for the negative prompt

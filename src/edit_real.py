@@ -29,6 +29,7 @@ if __name__=="__main__":
     parser.add_argument('--xa_guidance', default=0.1, type=float)
     parser.add_argument('--negative_guidance_scale', default=5.0, type=float)
     parser.add_argument('--use_float_16', action='store_true')
+    parser.add_argument('--emb_dir', type=str, default='assets/embeddings_sd_1.4')
 
     args = parser.parse_args()
 
@@ -60,7 +61,7 @@ if __name__=="__main__":
         rec_pil, edit_pil = pipe(prompt_str,
                 num_inference_steps=args.num_ddim_steps,
                 x_in=torch.load(inv_path).unsqueeze(0),
-                edit_dir=construct_direction(args.task_name),
+                edit_dir=construct_direction(args.task_name, args.emb_dir),
                 guidance_amount=args.xa_guidance,
                 guidance_scale=args.negative_guidance_scale,
                 negative_prompt=prompt_str # use the unedited prompt for the negative prompt
